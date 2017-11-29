@@ -56,15 +56,23 @@ function tick() {
 setInterval(tick,1000);
 
 class Test extends Component {
+  state = {
+    persons: [
+      {name: 'Paul'},
+      {name: 'Riva'},
+      {name: 'Mike'}
+    ]
+  }
+
   render() {
       return (
           <div className="App">
               <h1>Hi, I'm a React App</h1>
               <p>It's really working!</p>
-              <Person name="Paul"/>
-              <Person name="test"/>
-              <Person name="Paul"/>
-              <Person name="Olivia">My hobbies: programming!</Person>
+              <button>Switch Name</button>
+              <Person name={this.state.persons[0].name}>My hobbies: programming!</Person>
+              <Person name={this.state.persons[1].name}/>
+              <Person name={this.state.persons[2].name}/>
           </div>
       )
   };
