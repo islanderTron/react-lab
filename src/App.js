@@ -61,11 +61,20 @@ class Test extends Component {
       {name: 'Paul'},
       {name: 'Riva'},
       {name: 'Mike'}
-    ]
+    ],
+    otherState: 'some other value'
   }
 
   switchNameHandler = () => {
-    console.log('Was click');
+    // console.log('Was click');
+    // DON'T DO THIS: this.state.persons[0] = 'basdf';
+    this.setState({
+      persons: [
+        {name: 'O'},
+        {name: 'Lala'},
+        {name: 'asdf'}
+      ]
+    })
   }
 
   render() {
