@@ -45,15 +45,15 @@ ReactDOM.render(
   document.getElementById('asdf')
 );
 
-function tick() {
-  const element = (
-    <div>
-      <p>It is {new Date().toLocaleTimeString()}</p>
-    </div>
-  );
-  ReactDOM.render(element, document.getElementById('time'));
-}
-setInterval(tick,1000);
+// function tick() {
+//   const element = (
+//     <div>
+//       <p>It is {new Date().toLocaleTimeString()}</p>
+//     </div>
+//   );
+//   ReactDOM.render(element, document.getElementById('time'));
+// }
+// setInterval(tick,1000);
 
 class Test extends Component {
   state = {
@@ -64,12 +64,16 @@ class Test extends Component {
     ]
   }
 
+  switchNameHandler = () => {
+    console.log('Was click');
+  }
+
   render() {
       return (
           <div className="App">
               <h1>Hi, I'm a React App</h1>
               <p>It's really working!</p>
-              <button>Switch Name</button>
+              <button onClick={this.switchNameHandler} >Switch Name</button>
               <Person name={this.state.persons[0].name}>My hobbies: programming!</Person>
               <Person name={this.state.persons[1].name}/>
               <Person name={this.state.persons[2].name}/>
