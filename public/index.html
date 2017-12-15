@@ -39,5 +39,44 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      var myFunction = function () {
+        return "Hello";
+      };
+
+      // Arrow functions - shorter syntax than a function expression and does not have its own this, arguments, super, or new.target.
+
+      // (parm) => { statement }
+      // (parm) => expression
+      
+      // Note: parentheses are optional when there's only one parameter name:
+      // parm => { statement }
+      // parm => expression
+
+      let f = ([a,b] = [1,2], {x:c} = {x: a + b}) => a + b + c;
+      f();
+
+      // Shorter functions
+      var materials = [
+        'Hydrogen',
+        'Helium',
+        'Lithium',
+        'Beryllium'
+      ];
+
+      // materials.map(function(materials){
+      //    console.log(materials.length);
+      // }); 
+
+      materials.map((materials) => {
+        console.log(materials);
+      });
+
+      var x = materials.map( materials => materials.length);
+
+      // console.log(x);
+
+      
+    </script>
   </body>
 </html>
