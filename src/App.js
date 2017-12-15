@@ -159,4 +159,52 @@ ReactDOM.render(
   document.getElementById('time')
 );
 
+// function ActionLink() {
+//   function handleClick(e) {
+//     e.preventDefault();
+//     console.log("The link was clicked.");
+//   }
+
+//   return (
+//     <a href="#" className="button" onClick={handleClick}>
+//       Click me
+//     </a>
+//   );
+// }
+
+// ReactDOM.render(
+//   <ActionLink />,
+//   document.getElementById('button')
+// );
+
+// Define a component using an ES6 common pattern is for an event handler to be a method on the class
+class Toggle extends Component {
+  constructor(props){
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make `this work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    )
+  }
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('button')
+);
+
 export default App;
