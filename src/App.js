@@ -66,8 +66,6 @@ class Test extends Component {
   }
 
   switchNameHandler = () => {
-    // console.log('Was click');
-    // DON'T DO THIS: this.state.persons[0] = 'basdf';
     this.setState({
       persons: [
         {name: 'O'},
@@ -82,10 +80,13 @@ class Test extends Component {
           <div className="App">
               <h1>Hi, I'm a React App</h1>
               <p>It's really working!</p>
-              <button onClick={this.switchNameHandler}>Switch Name</button>
+              <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button>
               
               <Person 
-                name={this.state.persons[0].name}>My hobbies: programming!</Person>
+                name={this.state.persons[0].name}>
+                {/* This is props.children which will pass down to Person.js - instance function */}
+                My hobbies: programming!
+                </Person>
               
               <Person 
                 name={this.state.persons[1].name}/>
@@ -96,6 +97,11 @@ class Test extends Component {
       )
   };
 }
+
+ReactDOM.render(
+  <Test />,
+  document.getElementById('test')
+);
 
 // Without JSX - I don't like this. 
 // const element = React.createElement(
