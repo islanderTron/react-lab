@@ -6,56 +6,6 @@ import { setInterval, clearInterval } from 'timers';
 import Person from './Person/Person'; // import Person.js from Person/Person.js
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        {/* <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
-      </div>
-    );
-    // return React.createElement('div', {className:'App'}, '',
-    //   React.createElement('h1', null, 'Hi I\'m a React App!')
-    // );``
-  }
-}
-
-// class HelloMessage extends Component { 
-//   render() {
-//     return (
-//       <div>
-//         Hello {this.props.message}
-//       </div>
-//     );
-//   }
-// }
-
-// const element = <h1>testing</h1>;
-
-// ReactDOM.render(
-//   <HelloMessage message= {element} />, document.getElementById('test')
-// );
-
-// ReactDOM.render(
-//   <h1>Hello, world!</h1>,
-//   document.getElementById('asdf')
-// );
-
-// function tick() {
-//   const element = (
-//     <div>
-//       <p>It is {new Date().toLocaleTimeString()}</p>
-//     </div>
-//   );
-//   ReactDOM.render(element, document.getElementById('time'));
-// }
-// setInterval(tick,1000);
-
-class Test extends Component {
   state = {
     persons: [
       {name: 'Paul'},
@@ -84,74 +34,52 @@ class Test extends Component {
       ]
     })
   }
-
   render() {
-    // Inline styles
+    // Inline style
     const style = {
       background: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px"
     };
-      return (
-          <div className="App">
-              <h1>Hi, I'm a React App</h1>
-              <p>It's really working!</p>
-              {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
-              {/* There are two ways to do bind */}
-              {/* 
-                Binding method
-                <button className="switch_name" onClick={this.switchNameHandler.bind(this, 'Test')}>Switch Name</button> 
-                
-                Arror function
-                <button className="switch_name" onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
-              */}
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>It's really working!</p>
+        {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
+        {/* There are two ways to do bind */}
+        {/* 
+          Binding method
+          <button className="switch_name" onClick={this.switchNameHandler.bind(this, 'Test')}>Switch Name</button> 
+          
+          Arror function
+          <button className="switch_name" onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
+        */}
 
-              <button
-              style={style}
-              className="switch_name" 
-              onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
-              
-              
-              <Person 
-                name={this.state.persons[0].name}>
-                {/* This is props.children which will pass down to Person.js - instance function */}
-                My hobbies: programming!
-                </Person>
-              
-              <Person 
-                name={this.state.persons[1].name}
-                click={this.switchNameHandler}
-                changed={this.nameChangedHandler} />
-              
-              <Person 
-                name={this.state.persons[2].name}/>
-          </div>
-      )
-  };
+        <button
+        style={style}
+        className="switch_name" 
+        onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
+        
+        <Person 
+          name={this.state.persons[0].name}>
+          {/* This is props.children which will pass down to Person.js - instance function */}
+          My hobbies: programming!
+          </Person>
+        
+        <Person 
+          name={this.state.persons[1].name}
+          click={this.switchNameHandler}
+          changed={this.nameChangedHandler} />
+        
+        <Person 
+          name={this.state.persons[2].name}/>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <Test />,
-  document.getElementById('test')
-);
-
-// Without JSX - I don't like this. 
-// const element = React.createElement(
-//   'div',
-//   {className:'container'},
-//   'Hello world'
-// );
-
-// let x = function () {
-//   return "Hello world";
-// }
-
-// x;
-// console.log(x);
-// console.log(element);
-
-// ReactDOM.render(<Test/>, document.getElementById('asdf'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 // Class components should always call the base construtor with props
 class PracticeState extends Component {
@@ -197,24 +125,6 @@ ReactDOM.render(
   <PracticeState />,
   document.getElementById('time')
 );
-
-// function ActionLink() {
-//   function handleClick(e) {
-//     e.preventDefault();
-//     console.log("The link was clicked.");
-//   }
-
-//   return (
-//     <a href="#" className="button" onClick={handleClick}>
-//       Click me
-//     </a>
-//   );
-// }
-
-// ReactDOM.render(
-//   <ActionLink />,
-//   document.getElementById('button')
-// );
 
 // Define a component using an ES6 common pattern is for an event handler to be a method on the class
 class Toggle extends Component {
