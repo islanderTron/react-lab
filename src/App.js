@@ -65,22 +65,53 @@ class Test extends Component {
     otherState: 'some other value'
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     this.setState({
       persons: [
-        {name: 'O'},
+        {name: newName},
         {name: 'Lala'},
         {name: 'asdf'}
       ]
     })
   }
 
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        {name: "Tada"},
+        {name: event.target.value},
+        {name: 'asdf'}
+      ]
+    })
+  }
+
   render() {
+    // Inline styles
+    const style = {
+      background: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px"
+    };
       return (
           <div className="App">
               <h1>Hi, I'm a React App</h1>
               <p>It's really working!</p>
-              <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button>
+              {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
+              {/* There are two ways to do bind */}
+              {/* 
+                Binding method
+                <button className="switch_name" onClick={this.switchNameHandler.bind(this, 'Test')}>Switch Name</button> 
+                
+                Arror function
+                <button className="switch_name" onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
+              */}
+
+              <button
+              style={style}
+              className="switch_name" 
+              onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
+              
               
               <Person 
                 name={this.state.persons[0].name}>
@@ -89,7 +120,9 @@ class Test extends Component {
                 </Person>
               
               <Person 
-                name={this.state.persons[1].name}/>
+                name={this.state.persons[1].name}
+                click={this.switchNameHandler}
+                changed={this.nameChangedHandler} />
               
               <Person 
                 name={this.state.persons[2].name}/>
