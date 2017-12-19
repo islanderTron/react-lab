@@ -5,42 +5,6 @@ import ReactDOM from 'react-dom';
 import { setInterval, clearInterval } from 'timers';
 import Person from './Person/Person'; // import Person.js from Person/Person.js
 
-class State extends Component {
-  state = {
-    persons: [
-      {name: 'Paul'}
-    ],
-    otherState: 'some other value'
-  }
-
-  switchNameHandler = () => {
-    this.setState({
-      persons: [
-        {name: 'Test'}
-      ]
-    })
-  }
-
-  render() {
-      return (
-          <div className="App">
-              <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button>
-              
-              <Person 
-                name={this.state.persons[0].name}>
-                {/* This is props.children which will pass down to Person.js - instance function */}
-                My hobbies: programming!
-                </Person>
-          </div>
-      )
-  };
-}
-
-ReactDOM.render(
-  <Test />,
-  document.getElementById('test')
-);
-
 class App extends Component {
   render() {
     return (
@@ -90,6 +54,54 @@ class App extends Component {
 //   ReactDOM.render(element, document.getElementById('time'));
 // }
 // setInterval(tick,1000);
+
+class Test extends Component {
+  state = {
+    persons: [
+      {name: 'Paul'},
+      {name: 'Riva'},
+      {name: 'Mike'}
+    ],
+    otherState: 'some other value'
+  }
+
+  switchNameHandler = () => {
+    this.setState({
+      persons: [
+        {name: 'O'},
+        {name: 'Lala'},
+        {name: 'asdf'}
+      ]
+    })
+  }
+
+  render() {
+      return (
+          <div className="App">
+              <h1>Hi, I'm a React App</h1>
+              <p>It's really working!</p>
+              <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button>
+              
+              <Person 
+                name={this.state.persons[0].name}>
+                {/* This is props.children which will pass down to Person.js - instance function */}
+                My hobbies: programming!
+                </Person>
+              
+              <Person 
+                name={this.state.persons[1].name}/>
+              
+              <Person 
+                name={this.state.persons[2].name}/>
+          </div>
+      )
+  };
+}
+
+ReactDOM.render(
+  <Test />,
+  document.getElementById('test')
+);
 
 // Without JSX - I don't like this. 
 // const element = React.createElement(
