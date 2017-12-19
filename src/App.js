@@ -12,7 +12,8 @@ class App extends Component {
       {name: 'Riva'},
       {name: 'Mike'}
     ],
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -34,6 +35,13 @@ class App extends Component {
       ]
     })
   }
+
+  togglePersonsHandler = () => {
+     const doesShow = this.state.showPersons;
+     this.setState({showPersons:!doesShow});
+     console.log(!doesShow);
+  }
+  
   render() {
     // Inline style
     const style = {
@@ -44,8 +52,6 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>It's really working!</p>
         {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
         {/* There are two ways to do bind */}
         {/* 
@@ -57,23 +63,29 @@ class App extends Component {
         */}
 
         <button
-        style={style}
-        className="switch_name" 
-        onClick={()=> this.switchNameHandler("Test")}>Switch Name</button>
-        
-        <Person 
-          name={this.state.persons[0].name}>
-          {/* This is props.children which will pass down to Person.js - instance function */}
-          My hobbies: programming!
-          </Person>
-        
-        <Person 
-          name={this.state.persons[1].name}
-          click={this.switchNameHandler}
-          changed={this.nameChangedHandler} />
-        
-        <Person 
-          name={this.state.persons[2].name}/>
+          style={style}
+          className="switch_name" 
+          onClick={this.togglePersonsHandler}>Switch Name
+        </button>
+
+        {
+          this.state.showPersons === true ?
+            <div>
+              <Person 
+              name={this.state.persons[0].name}>
+              {/* This is props.children which will pass down to Person.js - instance function */}
+              My hobbies: programming!
+              </Person>
+
+              <Person 
+              name={this.state.persons[1].name}
+              click={this.switchNameHandler}
+              changed={this.nameChangedHandler} />
+
+              <Person 
+              name={this.state.persons[2].name}/>
+            </div> : null
+        }
       </div>
     );
   }
