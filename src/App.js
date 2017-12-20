@@ -8,32 +8,63 @@ import Person from './Person/Person'; // import Person.js from Person/Person.js
 class App extends Component {
   state = {
     persons: [
-      {name: 'Paul'},
-      {name: 'Riva'},
-      {name: 'Mike'}
+      {id:"asdf", name: 'Paul'},
+      {id:"lllo", name: 'Riva'},
+      {id:"1234", name: 'Mike'}
     ],
     otherState: 'some other value',
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        {name: newName},
-        {name: 'Lala'},
-        {name: 'asdf'}
-      ]
+  // switchNameHandler = (newName) => {
+  //   this.setState({
+  //     persons: [
+  //       {name: newName},
+  //       {name: 'Lala'},
+  //       {name: 'asdf'}
+  //     ]
+  //   });
+  // }
+
+  nameChangedHandler = (event,id) => {
+    // Find id in persons' obj and return it
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
     });
+
+    // Get the person itself by reaching out to these state
+    // persons and accessing the element at the person index
+    // Assign obj's element as array without mutating persons' obj directly 
+    // Assign a specific array from persons' obj
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    // Before I can get persons' object,
+    // spread operator or slice  
+    // Assign and update the whole persons' obj
+    const persons = [...this.state.persons];
+    
+    // Update at one person in persons object
+    persons[personIndex] = person;
+
+    // Update persons array which is a copy of the old array where we updated one element with the updated
+    this.setState({persons: persons });
   }
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        {name: "Tada"},
-        {name: event.target.value},
-        {name: 'asdf'}
-      ]
-    });
+  deletePersonHandler = (personIndex) => {
+    // const persons = this.state.persons;
+    // At position personIndex (could be 0, 1, or 2), remove 1 item
+    // https://www.w3schools.com/jsref/jsref_splice.asp
+    // persons.splice(personIndex,1);
+    
+    // Updating State Immutably - 2 best practice ways: 
+    // const persons = this.state.persons.splice();
+    const persons = [...this.state.persons];
+    persons.splice(personIndex,1);
+    this.setState({persons:persons})
   }
 
   togglePersonsHandler = () => {
@@ -41,7 +72,7 @@ class App extends Component {
      this.setState({showPersons:!doesShow});
      console.log(!doesShow);
   }
-  
+
   render() {
     // Inline style
     const style = {
@@ -56,8 +87,19 @@ class App extends Component {
     if(this.state.showPersons === true ) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} />
+          {/* 
+            https://www.w3schools.com/jsref/jsref_map.asp
+            map(currentValue, index, arr)
+            currentValue  - value of the current element
+            index         - array index of the current element
+            arr           - array obj the current element belongs to
+          */}
+          {this.state.persons.map((person,index) => {
+            return <Person 
+            click={() => this.deletePersonHandler(index)} 
+            name={person.name}
+            key={person.id}
+            changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
       );
@@ -160,9 +202,9 @@ class Toggle extends Component {
   }
 }
 
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('button')
-);
+// ReactDOM.render(
+//   <Toggle />,
+//   document.getElementById('button')
+// );
 
 export default App;
