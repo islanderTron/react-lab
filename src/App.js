@@ -23,7 +23,7 @@ class App extends Component {
         {name: 'Lala'},
         {name: 'asdf'}
       ]
-    })
+    });
   }
 
   nameChangedHandler = (event) => {
@@ -33,7 +33,7 @@ class App extends Component {
         {name: event.target.value},
         {name: 'asdf'}
       ]
-    })
+    });
   }
 
   togglePersonsHandler = () => {
@@ -50,6 +50,19 @@ class App extends Component {
       border: "1px solid blue",
       padding: "8px"
     };
+
+    let persons = null;
+
+    if(this.state.showPersons === true ) {
+      persons = (
+        <div>
+          {this.state.persons.map(person => {
+            return <Person name={person.name} />
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
@@ -68,24 +81,8 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>Switch Name
         </button>
 
-        {
-          this.state.showPersons === true ?
-            <div>
-              <Person 
-              name={this.state.persons[0].name}>
-              {/* This is props.children which will pass down to Person.js - instance function */}
-              My hobbies: programming!
-              </Person>
+        {persons}
 
-              <Person 
-              name={this.state.persons[1].name}
-              click={this.switchNameHandler}
-              changed={this.nameChangedHandler} />
-
-              <Person 
-              name={this.state.persons[2].name}/>
-            </div> : null
-        }
       </div>
     );
   }
