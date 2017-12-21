@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
 import { setInterval, clearInterval } from 'timers';
-// import Radium from 'radium';
+import Radium from 'radium';
 import Person from './Person/Person'; // import Person.js from Person/Person.js
 
 class App extends Component {
