@@ -39,3 +39,20 @@
 .bold {
   font-weight: bold;
 }
+
+#time, #root{
+  text-align: center;
+}
+
+$hoverColor: lightgreen;
+#root{
+  .switch_name{
+    &:hover{
+      background-color: $hoverColor !important;
+    }
+  }
+}
+
+.bigFont{
+  color: yellow;
+}

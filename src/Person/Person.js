@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Person.css';
+import classes from './Person.scss';
 // import Radium from 'radium';
 const person = (props) => {
     // const style = {

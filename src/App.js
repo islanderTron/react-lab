@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import classes from './App.css';
+import appScss from './App.scss';
 import ReactDOM from 'react-dom';
 import { setInterval, clearInterval } from 'timers';
 import Radium, { StyleRoot } from 'radium';
@@ -109,17 +109,17 @@ class App extends Component {
       style.backgroundColor = "red";
     }
 
-    const assignedClasses = [];
-    if(this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if(this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
-    }
+    // const assignedClasses = [];
+    // if(this.state.persons.length <= 2) {
+    //   assignedClasses.push(classes.red);
+    // }
+    // if(this.state.persons.length <= 1) {
+    //   assignedClasses.push(classes.bold);
+    // }
 
     return (
  
-      <div className={classes.App}> 
+      <div className={App}> 
         {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
         {/* There are two ways to do bind */}
         {/* 
@@ -179,7 +179,7 @@ class PracticeState extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, world</h1>
+        <h1 className={appScss.bigFont}>Hello, world</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );

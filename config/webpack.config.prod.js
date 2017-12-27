@@ -13,6 +13,9 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -211,12 +214,25 @@ module.exports = {
                 },
                 {
                   test: /\.scss$/,
-                  loader: [
-                    require.resolve('style-loader'),
-                    require.resolve('css-loader'),
-                    require.resolve('sass-loader')
-                  ]
+                  use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                    use: [
+                      {
+                        loader: 'css-loader',
+                        options: {
+                          modules: true,
+                          sourceMap: true,
+                          importLoaders: 2,
+                          localIdentName: '[name]__[local]___[hash:base64:5]'
+                        }
+                      },
+                    'sass-loader'
+                    ]
+                  })                
                 },
+                plugins: [
+                  new ExtractTextPlugin({ filename: 'styles.css', allChunks: true }),
+                ]
                 extractTextPluginOptions
               )
             ),
