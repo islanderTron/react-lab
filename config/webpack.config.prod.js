@@ -209,6 +209,14 @@ module.exports = {
                     },
                   ],
                 },
+                {
+                  test: /\.scss$/,
+                  loader: [
+                    require.resolve('style-loader'),
+                    require.resolve('css-loader'),
+                    require.resolve('sass-loader')
+                  ]
+                },
                 extractTextPluginOptions
               )
             ),
@@ -224,7 +232,12 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [
+              /\.js$/, 
+              /\.html$/, 
+              /\.json$/,
+              /\.scss$/
+            ],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
