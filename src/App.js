@@ -82,11 +82,7 @@ class App extends Component {
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: 'black' 
-      }
+      cursor: "pointer"
     };
 
     let persons = null;
@@ -111,14 +107,10 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = "red";
-      style[":hover"] = { 
-        backgroundColor:"salmon",
-        color:'black'
-      };
     }
 
     return (
-      <StyleRoot>
+ 
       <div className="App">
         {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
         {/* There are two ways to do bind */}
@@ -139,7 +131,7 @@ class App extends Component {
         {persons}
 
       </div>
-      </StyleRoot>
+      
     );
   }
 }
@@ -221,4 +213,4 @@ class Toggle extends Component {
 //   document.getElementById('button')
 // );
 
-export default Radium(App);
+export default App;
