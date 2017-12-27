@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import ReactDOM from 'react-dom';
 import { setInterval, clearInterval } from 'timers';
 import Radium, { StyleRoot } from 'radium';
@@ -109,9 +109,17 @@ class App extends Component {
       style.backgroundColor = "red";
     }
 
+    const assignedClasses = [];
+    if(this.state.persons.length <= 2) {
+      assignedClasses.push(classes.red);
+    }
+    if(this.state.persons.length <= 1) {
+      assignedClasses.push(classes.bold);
+    }
+
     return (
  
-      <div className="App">
+      <div className={classes.App}> 
         {/* <button className="switch_name" onClick={this.switchNameHandler}>Switch Name</button> */}
         {/* There are two ways to do bind */}
         {/* 

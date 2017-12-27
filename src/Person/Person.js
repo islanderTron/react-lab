@@ -1,5 +1,5 @@
 import React from 'react';
-import './Person.css';
+import classes from './Person.css';
 // import Radium from 'radium';
 const person = (props) => {
     // const style = {
@@ -8,7 +8,7 @@ const person = (props) => {
     //     }
     // };
     return(
-        <div className="Person">
+        <div className={classes.Person}>
         {/* <div className="Person" style={style}> */}
             <p onClick={props.click}>I'm a {props.name}! {props.children}</p>
             {/* <p>{props.children}</p> */}
